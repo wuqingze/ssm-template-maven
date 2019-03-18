@@ -22,7 +22,7 @@
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" /> -->
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/mybatis?serverTimezone=GMT%2B8&amp;" />
+		<property name="url" value="jdbc:mysql://localhost:3306/springmvc?serverTimezone=GMT%2B8&amp;" />
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 		<property name="maxActive" value="10" />
@@ -46,20 +46,22 @@
 	</bean>
 	
 	<!-- Mapper接口代理实现 -->
-	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
-	<!-- 	配置mapper接口的全路径名称 -->
+<!-- 	<bean id="userMapper" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		配置mapper接口的全路径名称
 		<property name="mapperInterface" value="com.wqz.mapper.UserMapper"></property>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
-	</bean> 
+	</bean> -->
 	
 	<!-- 使用包扫描的方式批量引入Mapper
 	扫描后引用的时候可以使用类名,首字母小写.
 	 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<!-- 指定要扫描的包的全路径名称,如果有多个包用英文状态下的逗号分隔 -->
-		<property name="basePackage" value="com.wqz.mapper"></property>
+		<property name="basePackage" value="com.wqz.dao,com.wqz.mapper"></property>
 	</bean>
 	<bean id="hello" class="com.wqz.pojo.Hello">
 		<property name="name" value="wuqingze"></property>
 	</bean>
+	
+	<context:component-scan base-package="com.wqz.service"></context:component-scan>
 </beans>

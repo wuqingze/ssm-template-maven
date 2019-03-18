@@ -54,4 +54,12 @@ public class UserMapperTest {
 		List<User> list = userMapper.selectByExample(userExample);
 		System.out.println(list);
 	}
+	
+	@Test
+	public void packagescaner() throws Exception{
+		UserMapper userMapper = (UserMapper)applicatonContext.getBean(com.wqz.mapper.UserMapper.class);
+		
+		User user = userMapper.selectByPrimaryKey(1);
+		System.out.println(user);
+	}
 }
